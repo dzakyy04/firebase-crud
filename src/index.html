@@ -8,9 +8,57 @@
 </head>
 
 <body>
-    <h1 class="text-3xl font-bold underline">
-        Hello world!
-    </h1>
+    <!-- Navbar -->
+    <div class="container navbar">
+        <div class="navbar-start">
+            <a class="navbar-item">Firebase CRUD</a>
+        </div>
+    </div>
+
+    <!-- Main -->
+    <div class="container mt-4">
+        <button class="btn btn-primary">Default</button>
+
+        <!-- Table -->
+        <div class="flex w-full overflow-x-auto mt-4">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>NIM</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>1</th>
+                        <td>09021182126001</td>
+                        <td>Della Susanti</td>
+                        <td>della@gmail.com</td>
+                        <td>081111111111</td>
+                        <td>
+                            <span class="badge badge-warning">Edit</span>
+                            <span class="badge badge-error">Delete</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <td>09021182126002</td>
+                        <td>Robby Hidayattullah</td>
+                        <td>robby@gmail.com</td>
+                        <td>082222222222</td>
+                        <td>
+                            <span class="badge badge-warning">Edit</span>
+                            <span class="badge badge-error">Delete</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
 
 </html>
