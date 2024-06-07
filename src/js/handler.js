@@ -1,5 +1,5 @@
 import { app } from "./config.js"
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getFirestore, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const db = getFirestore(app);
 
@@ -38,5 +38,36 @@ async function populateTable() {
 
     tbody.innerHTML = rows;
 }
+
+
+async function storeData(data) {
+    await addDoc(collection(db, "students"), data);
+    populateTable();
+}
+
+function closeAddModal() {
+    const modalCheckbox = document.getElementById("add-modal");
+    modalCheckbox.checked = false;
+}
+
+function handleAddForm(event) {
+    event.preventDefault();
+    const nim = document.getElementById("nim");
+    const name = document.getElementById("name");
+    const email = document.getElementById("email");
+    const phone_number = document.getElementById("phone_number");
+
+    storeData({
+        nim: nim.value,
+        name: name.value,
+        email: email.value,
+        phone_number: phone_number.value
+    });
+
+    document.getElementById("add-data-form").reset();
+    closeAddModal();
+}
+
+document.getElementById("add-data-form").addEventListener("submit", handleAddForm);
 
 populateTable();
