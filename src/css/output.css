@@ -1254,6 +1254,15 @@ html {
   outline-color: rgb(var(--primary));
 }
 
+.btn-error {
+  --tw-bg-opacity: 1;
+  background-color: rgb(var(--error)/var(--tw-bg-opacity));
+}
+
+.btn-error:focus-visible {
+  outline-color: rgb(var(--error));
+}
+
 .btn-sm {
   border-radius: .5rem;
   height: 2rem;

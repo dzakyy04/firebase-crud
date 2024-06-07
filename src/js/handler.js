@@ -75,11 +75,8 @@ function handleAddForm(event) {
 
 // Delete data from Firestore
 async function deleteData(id) {
-    const confirmation = confirm("Are you sure you want to delete this data?");
-    if (confirmation) {
-        await deleteDoc(doc(db, "students", id));
-        populateTable();
-    }
+    await deleteDoc(doc(db, "students", id));
+    populateTable();
 }
 
 // Event listeners
@@ -87,7 +84,17 @@ document.getElementById("add-data-form").addEventListener("submit", handleAddFor
 document.getElementById("tbody").addEventListener("click", function (e) {
     if (e.target.classList.contains("delete-data")) {
         const id = e.target.dataset.id;
-        deleteData(id);
+        const modal = document.getElementById("delete-modal");
+        modal.checked = true;
+
+        document.getElementById("confirm-delete").addEventListener("click", function () {
+            deleteData(id);
+            modal.checked = false;
+        });
+
+        document.getElementById("cancel-delete").addEventListener("click", function () {
+            modal.checked = false;
+        });
     }
 });
 
