@@ -1,14 +1,22 @@
-import { getFirestore, collection, doc, getDocs, getDoc, addDoc, deleteDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getFirestore, collection, doc, getDocs, getDoc, addDoc, deleteDoc, setDoc, query, where } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import { app } from "./config.js";
 
 const db = getFirestore(app);
 
-async function fetchData() {
-    const snapshot = await getDocs(collection(db, "students"));
+async function fetchData(nim) {
+    let snapshot;
+    if (nim) {
+        const q = query(collection(db, "students"), where('nim', '>=', nim), where('nim', '<=', nim + '\uf8ff'));
+        snapshot = await getDocs(q);
+    } else {
+        snapshot = await getDocs(collection(db, "students"));
+    }
+    
     return snapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data(),
     }));
+
 }
 
 async function getDocById(id) {

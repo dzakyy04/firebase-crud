@@ -18,9 +18,10 @@ function createTableRow(student, index) {
 
 async function populateTable() {
     const tbody = document.getElementById("tbody");
+    const nim = document.getElementById("search").value;
     tbody.innerHTML = '';
 
-    const students = await fetchData();
+    const students = await fetchData(nim);
     tbody.innerHTML = students.map((student, index) => createTableRow(student, index)).join('');
 }
 

@@ -64,4 +64,5 @@ document.getElementById("tbody").addEventListener("click", async (e) => {
 });
 
 // Initial population of table
+document.getElementById('search').addEventListener('input', populateTable);
 populateTable();

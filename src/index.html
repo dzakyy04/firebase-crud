@@ -18,48 +18,56 @@
     <!-- Main -->
     <div class="container mt-4">
         <!-- Add data button and modal -->
-        <label class="btn btn-primary" for="add-modal">Add new student</label>
+        <div class="flex justify-between">
+            <label el class="btn btn-primary" for="add-modal">Add new student</label>
 
-        <input class="modal-state" id="add-modal" type="checkbox" />
-        <div class="modal w-screen">
-            <label class="modal-overlay" for="add-modal"></label>
-            <div class="modal-content flex flex-col gap-5 max-w-3xl">
-                <label for="add-modal" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</label>
-                <h2 class="text-xl">Add new student</h2>
-                <span>Please fill in all the available fields in the form.</span>
+            <input class="modal-state" id="add-modal" type="checkbox" />
+            <div class="modal w-screen">
+                <label class="modal-overlay" for="add-modal"></label>
+                <div class="modal-content flex flex-col gap-5 max-w-3xl">
+                    <label for="add-modal" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</label>
+                    <h2 class="text-xl">Add new student</h2>
+                    <span>Please fill in all the available fields in the form.</span>
 
-                <!-- Form -->
-                <form action="" class="flex flex-col gap-5" id="add-data-form">
-                    <div class="form-group mb-4">
-                        <div class="form-field">
-                            <label class="form-label" for="nim">NIM</label>
-                            <input placeholder="Please enter the nim" type="text" id="nim" class="input max-w-full" />
+                    <!-- Form -->
+                    <form action="" class="flex flex-col gap-5" id="add-data-form">
+                        <div class="form-group mb-4">
+                            <div class="form-field">
+                                <label class="form-label" for="nim">NIM</label>
+                                <input placeholder="Please enter the nim" type="text" id="nim"
+                                    class="input max-w-full" />
+                            </div>
+
+                            <div class="form-field">
+                                <label class="form-label" for="name">Name</label>
+                                <input placeholder="Please enter the name" type="text" id="name"
+                                    class="input max-w-full" />
+                            </div>
+
+                            <div class="form-field">
+                                <label class="form-label" for="email">Email</label>
+                                <input placeholder="Please enter the email" type="email" id="email"
+                                    class="input max-w-full" />
+                            </div>
+
+                            <div class="form-field">
+                                <label class="form-label" for="phone_number">Phone Number</label>
+                                <input placeholder="Please enter the phone number" type="text" id="phone_number"
+                                    class="input max-w-full" />
+                            </div>
                         </div>
-
-                        <div class="form-field">
-                            <label class="form-label" for="name">Name</label>
-                            <input placeholder="Please enter the name" type="text" id="name" class="input max-w-full" />
+                        <div class="flex gap-3">
+                            <button class="btn btn-block">Cancel</button>
+                            <button type="submit" class="btn btn-primary btn-block">Submit</button>
                         </div>
-
-                        <div class="form-field">
-                            <label class="form-label" for="email">Email</label>
-                            <input placeholder="Please enter the email" type="email" id="email"
-                                class="input max-w-full" />
-                        </div>
-
-                        <div class="form-field">
-                            <label class="form-label" for="phone_number">Phone Number</label>
-                            <input placeholder="Please enter the phone number" type="text" id="phone_number"
-                                class="input max-w-full" />
-                        </div>
-                    </div>
-                    <div class="flex gap-3">
-                        <button class="btn btn-block">Cancel</button>
-                        <button type="submit" class="btn btn-primary btn-block">Submit</button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
+
+            <!-- Search bar -->
+            <input class="input" placeholder="Search by NIM..." / id="search" name="search">
         </div>
+
 
         <!-- Table -->
         <div class="flex w-full overflow-x-auto mt-4">
@@ -104,7 +112,7 @@
             <label for="edit-modal" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</label>
             <h2 class="text-xl">Edit student</h2>
             <span>Please fill in all the available fields in the form.</span>
-    
+
             <!-- Form -->
             <form action="" class="flex flex-col gap-5" id="edit-data-form">
                 <input type="hidden" id="edit-id" value="">
@@ -113,17 +121,19 @@
                         <label class="form-label" for="nim">NIM</label>
                         <input placeholder="Please enter the nim" type="text" id="edit-nim" class="input max-w-full" />
                     </div>
-    
+
                     <div class="form-field">
                         <label class="form-label" for="name">Name</label>
-                        <input placeholder="Please enter the name" type="text" id="edit-name" class="input max-w-full" />
+                        <input placeholder="Please enter the name" type="text" id="edit-name"
+                            class="input max-w-full" />
                     </div>
-    
+
                     <div class="form-field">
                         <label class="form-label" for="email">Email</label>
-                        <input placeholder="Please enter the email" type="email" id="edit-email" class="input max-w-full" />
+                        <input placeholder="Please enter the email" type="email" id="edit-email"
+                            class="input max-w-full" />
                     </div>
-    
+
                     <div class="form-field">
                         <label class="form-label" for="phone_number">Phone Number</label>
                         <input placeholder="Please enter the phone number" type="text" id="edit-phone_number"
