@@ -29,8 +29,24 @@ async function handleEditForm(event) {
     const name = document.getElementById("edit-name").value;
     const email = document.getElementById("edit-email").value;
     const phone_number = document.getElementById("edit-phone_number").value;
+    const photo = document.getElementById("edit-photo");
 
-    await updateData(id, { nim, name, email, phone_number });
+    let photoUrl = "";
+
+    const oldDocument = await getDocById(id);
+
+
+    if (photo.files.length > 0) {
+        const file = photo.files[0];
+        photoUrl = await uploadPhoto(file);
+        if (oldDocument.photoUrl) {
+            await deletePhoto(oldDocument.photoUrl);
+        }
+    } else {
+        photoUrl = oldDocument.photoUrl;
+    }
+
+    await updateData(id, { nim, name, email, phone_number, photoUrl });
 
     document.getElementById("edit-data-form").reset();
     populateTable();
