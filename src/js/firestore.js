@@ -1,5 +1,5 @@
 import { getFirestore, collection, doc, getDocs, getDoc, addDoc, deleteDoc, setDoc, query, where } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js"
+import { ref, uploadBytes, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js"
 import { app, storage } from "./config.js";
 
 const db = getFirestore(app);
@@ -54,4 +54,9 @@ async function uploadPhoto(file) {
     }
 }
 
-export { fetchData, getDocById, storeData, deleteData, updateData, uploadPhoto };
+async function deletePhoto(photoUrl) {
+    const photoRef = ref(storage, photoUrl);
+    await deleteObject(photoRef);
+}
+
+export { fetchData, getDocById, storeData, deleteData, updateData, uploadPhoto, deletePhoto };

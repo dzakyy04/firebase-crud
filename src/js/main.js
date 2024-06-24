@@ -1,4 +1,4 @@
-import { storeData, deleteData, getDocById, updateData, uploadPhoto } from "./firestore.js";
+import { storeData, deleteData, getDocById, updateData, uploadPhoto, deletePhoto } from "./firestore.js";
 import { populateTable, closeAddModal, closeEditModal, fillEditModal } from "./ui.js";
 
 async function handleAddForm(event) {
@@ -50,6 +50,10 @@ document.getElementById("tbody").addEventListener("click", async (e) => {
         const cancelDelete = document.getElementById("cancel-delete");
 
         confirmDelete.addEventListener("click", async () => {
+            const student = await getDocById(id);
+            if (student && student.photoUrl) {
+                await deletePhoto(student.photoUrl);
+            }
             await deleteData(id);
             deleteModal.checked = false;
             populateTable();
