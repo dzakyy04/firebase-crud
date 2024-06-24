@@ -1,4 +1,4 @@
-import { storeData, deleteData, getDocById, updateData } from "./firestore.js";
+import { storeData, deleteData, getDocById, updateData, uploadPhoto } from "./firestore.js";
 import { populateTable, closeAddModal, closeEditModal, fillEditModal } from "./ui.js";
 
 async function handleAddForm(event) {
@@ -7,8 +7,15 @@ async function handleAddForm(event) {
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
     const phone_number = document.getElementById("phone_number").value;
+    const photo = document.getElementById("photo");
 
-    await storeData({ nim, name, email, phone_number });
+    let photoUrl = "";
+    if (photo.files.length > 0) {
+        const file = photo.files[0];
+        photoUrl = await uploadPhoto(file);
+    }
+
+    await storeData({ nim, name, email, phone_number, photoUrl });
 
     document.getElementById("add-data-form").reset();
     populateTable();

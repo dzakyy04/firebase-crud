@@ -1,5 +1,6 @@
 // Modify the firebaseConfig and rename this file to config.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getStorage } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js"
 
 const firebaseConfig = {
     apiKey: "Your API Key",
@@ -11,5 +12,6 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const storage = getStorage(app);
 
-export { app };
+export { app, storage };

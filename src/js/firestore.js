@@ -1,5 +1,6 @@
 import { getFirestore, collection, doc, getDocs, getDoc, addDoc, deleteDoc, setDoc, query, where } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-import { app } from "./config.js";
+import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js"
+import { app, storage } from "./config.js";
 
 const db = getFirestore(app);
 
@@ -11,7 +12,7 @@ async function fetchData(nim) {
     } else {
         snapshot = await getDocs(collection(db, "students"));
     }
-    
+
     return snapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data(),
@@ -41,4 +42,16 @@ async function updateData(id, data) {
     await setDoc(doc(db, "students", id), data, { merge: true });
 }
 
-export { fetchData, getDocById, storeData, deleteData, updateData };
+async function uploadPhoto(file) {
+    const storageRef = ref(storage, 'images/' + file.name);
+    try {
+        const snapshot = await uploadBytes(storageRef, file);
+        const downloadURL = await getDownloadURL(snapshot.ref);
+        console.log('Image available at', downloadURL);
+        return downloadURL;
+    } catch (error) {
+        console.error('Image upload failed', error);
+    }
+}
+
+export { fetchData, getDocById, storeData, deleteData, updateData, uploadPhoto };

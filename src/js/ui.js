@@ -9,6 +9,9 @@ function createTableRow(student, index) {
             <td>${student.email}</td>
             <td>${student.phone_number}</td>
             <td>
+                <img src="${student.photoUrl}" alt="${student.nim}" width="150">
+            </td>
+            <td>
                 <span class="cursor-pointer badge edit-data badge-warning" data-id="${student.id}">Edit</span>
                 <span class="cursor-pointer badge delete-data badge-error" data-id="${student.id}">Delete</span>
             </td>
